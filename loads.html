@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Loads</h2>
+<form method="POST">
+    <input type="text" name="name" placeholder="Appliance Name" required>
+    <input type="number" name="how_many" placeholder="How Many" required>
+    <input type="number" name="power" placeholder="Power (W)" required>
+    <input type="number" name="duration_total" placeholder="Duration Total (hrs)" required>
+    <input type="number" name="duration_night" placeholder="Duration Night (hrs)" required>
+    <button type="submit">Add Load</button>
+</form>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>How Many</th>
+        <th>Power (W)</th>
+        <th>Duration Total (hrs)</th>
+        <th>Duration Night (hrs)</th>
+        <th>Actions</th>
+    </tr>
+    {% for load in loads %}
+    <tr>
+        <td>{{ load.name }}</td>
+        <td>{{ load.how_many }}</td>
+        <td>{{ load.power }}</td>
+        <td>{{ load.duration_total }}</td>
+        <td>{{ load.duration_night }}</td>
+        <td>
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2"><strong>Totals</strong></td>
+        <td>{{ total_power }} W</td>
+        <td>{{ total_duration }} hrs</td>
+        <td>{{ total_night }} hrs</td>
+        <td></td>
+    </tr>
+</table>
+{% endblock %}

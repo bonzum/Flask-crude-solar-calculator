@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Solar Panels</h2>
+<form method="POST">
+    <input type="text" name="name" placeholder="Panel Name" required>
+    <input type="number" name="how_many" placeholder="How Many" required>
+    <input type="number" name="voltage" placeholder="Voltage (V)" required>
+    <input type="number" name="duration_total_night" placeholder="Duration Total Night (hrs)" required>
+    <button type="submit">Add Panel</button>
+</form>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>How Many</th>
+        <th>Voltage (V)</th>
+        <th>Duration Total Night (hrs)</th>
+        <th>Actions</th>
+    </tr>
+    {% for panel in panels %}
+    <tr>
+        <td>{{ panel.name }}</td>
+        <td>{{ panel.how_many }}</td>
+        <td>{{ panel.voltage }}</td>
+        <td>{{ panel.duration_total_night }}</td>
+        <td>
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2"><strong>Totals</strong></td>
+        <td>{{ total_voltage }} V</td>
+        <td>{{ total_duration_night }} hrs</td>
+        <td></td>
+    </tr>
+</table>
+{% endblock %}

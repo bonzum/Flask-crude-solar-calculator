@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Batteries</h2>
+<form method="POST">
+    <input type="text" name="name" placeholder="Battery Name" required>
+    <input type="number" name="how_many" placeholder="How Many" required>
+    <input type="number" name="voltage" placeholder="Voltage (V)" required>
+    <input type="number" name="power" placeholder="Power (W)" required>
+    <button type="submit">Add Battery</button>
+</form>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>How Many</th>
+        <th>Voltage (V)</th>
+        <th>Power (W)</th>
+        <th>Actions</th>
+    </tr>
+    {% for battery in batteries %}
+    <tr>
+        <td>{{ battery.name }}</td>
+        <td>{{ battery.how_many }}</td>
+        <td>{{ battery.voltage }}</td>
+        <td>{{ battery.power }}</td>
+        <td>
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2"><strong>Totals</strong></td>
+        <td>{{ total_voltage }} V</td>
+        <td>{{ total_power }} W</td>
+        <td></td>
+    </tr>
+</table>
+{% endblock %}
